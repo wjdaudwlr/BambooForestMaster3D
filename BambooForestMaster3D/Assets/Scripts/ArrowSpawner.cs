@@ -42,6 +42,14 @@ public class ArrowSpawner : MonoBehaviour
         StartCoroutine(ArrowPatternStart(7, Pattern.StraightLine));
     }
 
+    private void Update()
+    {
+        if(GameManager.Instance.gState == GameState.GameOver)
+            StopAllCoroutines();
+    }
+
+
+
     IEnumerator ArrowPatternStart(float delayTime, Pattern pattern)
     {
         ArrowPattern(pattern);

@@ -31,13 +31,6 @@ public class Arrow : MonoBehaviour
         RandomSpeed = randomSpeed;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("GameOver");
-        }
-    }
 
     private void Destroy()
     {

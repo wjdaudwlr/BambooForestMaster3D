@@ -58,4 +58,13 @@ public class GameManager : MonoBehaviour
         gState = GameState.GameOver;
     }
 
+    public void Main()
+    {
+        gState = GameState.Main;
+    }
+
+    public void ReStart()
+    {
+        gState = GameState.Run;
+    }
 }

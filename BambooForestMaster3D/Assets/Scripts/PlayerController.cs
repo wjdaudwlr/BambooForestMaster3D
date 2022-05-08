@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private GameController gameController;
+    [SerializeField]
     private float moveSpeed;
 
     private Rigidbody rigid;
@@ -16,8 +18,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.Instance.gState == GameState.Run)
-            Move();
+        if (GameManager.Instance.gState != GameState.Run)
+            return;
+
+        Move();
     }
 
     void Move()
@@ -29,4 +33,14 @@ public class PlayerController : MonoBehaviour
 
         rigid.velocity = transform.TransformDirection(dir.normalized) * moveSpeed * Time.deltaTime;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Arrow")
+        {
+            gameController.GameOver();
+            Debug.Log("GameOver");
+        }
+    }
+
 }
