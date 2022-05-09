@@ -31,9 +31,9 @@ public class ArrowSpawner : MonoBehaviour
     IEnumerator Start()
     {
         Debug.Log("START");
-        StartCoroutine(ArrowPatternStart(1.5f, Pattern.Base));
+        StartCoroutine(ArrowPatternStart(1f, Pattern.Base));
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
 
         StartCoroutine(ArrowPatternStart(5f, Pattern.Circle));
 
@@ -76,7 +76,7 @@ public class ArrowSpawner : MonoBehaviour
 
                 newObj.transform.position = newPos;
                 newObj.Shoot((playerController.transform.position - newObj.transform.position)
-                    + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0, 0), true);
+                    + new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0), true);
                 break;
 
             case Pattern.Circle:

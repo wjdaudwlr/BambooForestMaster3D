@@ -7,8 +7,10 @@ public class Score : MonoBehaviour
     public TextMesh text_Timer;
     private float time_start;
     private float time_current;
-    private float time_Max = 100f;
     private bool isEnded;
+
+    public Text scoreText;
+    public Text bestScoreText;
 
     private void Start()
     {
@@ -32,17 +34,16 @@ public class Score : MonoBehaviour
         if(GameManager.Instance.gState == GameState.GameOver)
         {
             End_Timer();
+            GameOver();
         }
     }
 
     private void End_Timer()
     {
         Debug.Log("End");
-        time_current = time_Max;
         text_Timer.text = $"{time_current:N2}";
         isEnded = true;
     }
-
 
     private void Reset_Timer()
     {
@@ -51,5 +52,16 @@ public class Score : MonoBehaviour
         text_Timer.text = $"{time_current:N2}";
         isEnded = false;
         Debug.Log("Start");
+    }
+
+    private void GameOver()
+    {
+        scoreText.text = $"{time_current:N2}";
+        if(PlayerPrefs.GetFloat("BestScore") < time_current)
+        {
+            PlayerPrefs.SetFloat("BestScore", time_current);
+        }
+
+        bestScoreText.text = $"{PlayerPrefs.GetFloat("BestScore"):N2}";
     }
 }
