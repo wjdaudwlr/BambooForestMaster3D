@@ -18,7 +18,7 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.forward * (RandomSpeed ? Random.Range(moveSpeed, moveSpeed + 0.1f) : moveSpeed));
+        transform.Translate(Vector3.forward * (RandomSpeed ? Random.Range(moveSpeed, moveSpeed + 0.1f) : moveSpeed) * Time.deltaTime);
     }
 
     public void Shoot(Vector3 dir, bool randomSpeed = false)
